@@ -1,9 +1,9 @@
 import {getRandomPositiveInteger} from './util.js';
 import {getRandomArrayElement} from './util.js';
 
-firstPartDescription = ['красивый', 'старый', 'необыкновенный', 'новый', 'прекрасный'];
-secondPartDescription = ['дом', 'пейзаж', 'пляж', 'шкаф', 'офис']
-message = [
+const firstPartDescription = ['красивый', 'старый', 'необыкновенный', 'новый', 'прекрасный'];
+const secondPartDescription = ['дом', 'пейзаж', 'пляж', 'шкаф', 'офис']
+const message = [
     'Всё отлично!',
     'В целом всё неплохо. Но не всё.',
     'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -11,9 +11,7 @@ message = [
     'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
     'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-let idNumber = 0;
-const createPhotos = () => {
-    idNumber++;
+const generatePictureInformation = (idNumber) => {
     return {
         id: idNumber,
         url: `photos/${idNumber}.jpg`,
@@ -23,4 +21,11 @@ const createPhotos = () => {
     };
 };
 
-export {createPhotos};
+const createArrayPicturesInformation = (count) => {
+    let picturesInformation = new Array(count);
+    for (let i = 1; i <= count; i++) {
+        picturesInformation[i] = generatePictureInformation(i);
+    }
+    return picturesInformation;
+}
+export {createArrayPicturesInformation};
