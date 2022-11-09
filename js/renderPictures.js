@@ -5,7 +5,7 @@ const layoutPicture = document.querySelector('#picture')
 .content
 .querySelector('.picture');
 
-const picturesInformation = createArrayPicturesInformation(12)
+const picturesInformation = createArrayPicturesInformation(19);
 
 const createSimilarListPictureFragment = () => {
   const similarListPictureFragment = document.createDocumentFragment();
@@ -21,4 +21,4 @@ const createSimilarListPictureFragment = () => {
 
 storagePictures.appendChild(createSimilarListPictureFragment());
 
-
+export {picturesInformation};

@@ -1,1 +1,2 @@
-import './addendum.js';
+import './renderPictures.js';
+import './renderBigPicture.js';

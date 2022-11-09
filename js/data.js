@@ -15,16 +15,18 @@ const generatePictureInformation = (idNumber) => {
     return {
         id: idNumber,
         url: `photos/${idNumber}.jpg`,
-        description: getRandomArrayElement(firstPartDescription) + ' ' + getRandomArrayElement(secondPartDescription),
+        description: getRandomArrayElement(firstPartDescription) + ' '
+          + getRandomArrayElement(secondPartDescription),
         likes: getRandomPositiveInteger(15, 200),
-        comments: Array.from({length: getRandomPositiveInteger(1,2)}, () => {return getRandomArrayElement(message)})
+        comments: Array.from({length: getRandomPositiveInteger(1,2)}, () => 
+         {return getRandomArrayElement(message)})
     };
 };
 
 const createArrayPicturesInformation = (count) => {
     let picturesInformation = new Array(count);
     for (let i = 1; i <= count; i++) {
-        picturesInformation[i] = generatePictureInformation(i);
+        picturesInformation[i - 1] = generatePictureInformation(i);
     }
     return picturesInformation;
 }
