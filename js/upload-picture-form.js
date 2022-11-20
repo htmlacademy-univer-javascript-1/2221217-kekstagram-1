@@ -9,8 +9,7 @@ const inputTexthashtags = document.querySelector('.text__hashtags');
 const textareaTextDescription = document.querySelector('.text__description');
 const body = document.querySelector('body');
 
-
-function removeEventListenerFromForm() {
+function removeEventListenersFromForm() {
     buttonHideFormLoadedPicture.removeEventListener('click', hideFormLoadedPicture);
     document.removeEventListener('keydown', escHideFormLoadedPicture);
     formUploadPicture.removeEventListener('submit', validateTheForm);
@@ -25,7 +24,7 @@ function resetInputValue() {
 function hideFormLoadedPicture() {
     formRedactionLoadedPicture.classList.add('hidden'); 
     body.classList.remove('modal-open');
-    removeEventListenerFromForm();
+    removeEventListenersFromForm();
     resetInputValue();
 }
 
@@ -35,7 +34,6 @@ function escHideFormLoadedPicture(evt) {
         hideFormLoadedPicture();
     }
 }
-
 
 function addEventListenersToForm() {
     buttonHideFormLoadedPicture.addEventListener('click', hideFormLoadedPicture);

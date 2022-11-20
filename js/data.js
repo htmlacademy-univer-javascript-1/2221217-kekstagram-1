@@ -11,15 +11,28 @@ const message = [
     'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
     'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
+const name = ['Вова','Маша','Данил','Саша','Артём','Сева','Соня','Паша','Настя','Сёма']
 
 function createDescription() {
     return getRandomArrayElement(firstPartDescription) + ' '
           + getRandomArrayElement(secondPartDescription);
 }
 
+function generateComment(idNumber) {
+    return {
+        id: idNumber,
+        avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
+        message: getRandomArrayElement(message),
+        name: getRandomArrayElement(name)
+    }
+}
+
 function createComments() {
-    return Array.from({length: getRandomPositiveInteger(1,2)}, () => 
-    {return getRandomArrayElement(message)});
+    let comments = new Array(getRandomPositiveInteger(1, 15));
+    for (let i = 0; i < comments.length; i++) {
+        comments[i] = generateComment(i);
+    }
+    return comments;
 }
 
 function generatePictureInformation(idNumber) {
@@ -28,7 +41,7 @@ function generatePictureInformation(idNumber) {
         url: `photos/${idNumber}.jpg`,
         description: createDescription(),
         likes: getRandomPositiveInteger(15, 200),
-        comments: createComments()
+        comments: createComments(idNumber)
     };
 };
 
