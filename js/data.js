@@ -11,23 +11,32 @@ const message = [
     'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
     'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
-const generatePictureInformation = (idNumber) => {
+
+function createDescription() {
+    return getRandomArrayElement(firstPartDescription) + ' '
+          + getRandomArrayElement(secondPartDescription);
+}
+
+function createComments() {
+    return Array.from({length: getRandomPositiveInteger(1,2)}, () => 
+    {return getRandomArrayElement(message)});
+}
+
+function generatePictureInformation(idNumber) {
     return {
         id: idNumber,
         url: `photos/${idNumber}.jpg`,
-        description: getRandomArrayElement(firstPartDescription) + ' '
-          + getRandomArrayElement(secondPartDescription),
+        description: createDescription(),
         likes: getRandomPositiveInteger(15, 200),
-        comments: Array.from({length: getRandomPositiveInteger(1,2)}, () => 
-         {return getRandomArrayElement(message)})
+        comments: createComments()
     };
 };
 
-const createArrayPicturesInformation = (count) => {
+function createPicturesInformation(count) {
     let picturesInformation = new Array(count);
     for (let i = 1; i <= count; i++) {
         picturesInformation[i - 1] = generatePictureInformation(i);
     }
     return picturesInformation;
 }
-export {createArrayPicturesInformation};
+export {createPicturesInformation};
