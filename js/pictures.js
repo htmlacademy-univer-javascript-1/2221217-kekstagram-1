@@ -19,7 +19,7 @@ function createPicture(pictureInformation) {
 function renderPictures(picturesInformation) {
   const similarListPictureFragment = document.createDocumentFragment();
   picturesInformation.forEach((pictureInformation) => {
-    let picture = createPicture(pictureInformation);
+    const picture = createPicture(pictureInformation);
     similarListPictureFragment.appendChild(picture);
   });
   storagePictures.appendChild(similarListPictureFragment);
