@@ -2,8 +2,8 @@ import {renderBigPicture} from './big-picture.js';
 
 const storagePictures = document.querySelector('.pictures');
 const layoutPicture = document.querySelector('#picture')
-.content
-.querySelector('.picture');
+  .content
+  .querySelector('.picture');
 
 function createPicture(pictureInformation) {
   const picture = layoutPicture.cloneNode(true);

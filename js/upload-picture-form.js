@@ -1,50 +1,57 @@
-import {validateTheForm} from './validation-upload-picture-form.js';
+import {addEventValidateOnForm} from './validation-upload-picture-form.js';
+import {removeEventValidateFromForm} from './validation-upload-picture-form.js';
+import {addEventChangesScalePictureOnForm} from './picture-scale.js';
+import {removeEventChangesScalePictureFromForm} from './picture-scale.js';
+import {addEventSettingEffectsOnForm, removeEventSettingEffectsFromForm} from './picture-effect.js';
+export {removeEventSettingEffectsFromForm} from './picture-effect.js';
 
-const formUploadPicture = document.querySelector('#upload-select-image');
 const inputUploadPicture  = document.querySelector('#upload-file');
 const initialValueInputUploadPicture = inputUploadPicture.getAttribute('value');
 const formRedactionLoadedPicture = document.querySelector('.img-upload__overlay');
 const buttonHideFormLoadedPicture = document.querySelector('.img-upload__cancel');
-const inputTexthashtags = document.querySelector('.text__hashtags');
+const inputTextHashtags = document.querySelector('.text__hashtags');
 const textareaTextDescription = document.querySelector('.text__description');
 const body = document.querySelector('body');
 
 function removeEventListenersFromForm() {
-    buttonHideFormLoadedPicture.removeEventListener('click', hideFormLoadedPicture);
-    document.removeEventListener('keydown', escHideFormLoadedPicture);
-    formUploadPicture.removeEventListener('submit', validateTheForm);
+  buttonHideFormLoadedPicture.removeEventListener('click', hideFormLoadedPicture);
+  document.removeEventListener('keydown', escHideFormLoadedPicture);
+  removeEventValidateFromForm();
+  removeEventChangesScalePictureFromForm();
+  removeEventSettingEffectsFromForm();
 }
 
 function resetInputValue() {
-    inputUploadPicture.value = initialValueInputUploadPicture;
-    inputTexthashtags.value = '';
-    textareaTextDescription.value = '';  
+  inputUploadPicture.value = initialValueInputUploadPicture;
+  inputTextHashtags.value = '';
+  textareaTextDescription.value = '';
 }
 
 function hideFormLoadedPicture() {
-    formRedactionLoadedPicture.classList.add('hidden'); 
-    body.classList.remove('modal-open');
-    removeEventListenersFromForm();
-    resetInputValue();
+  formRedactionLoadedPicture.classList.add('hidden');
+  body.classList.remove('modal-open');removeEventListenersFromForm();
+  resetInputValue();
 }
 
 function escHideFormLoadedPicture(evt) {
-    const activeElement = document.activeElement;
-    if (evt.key === 'Escape' && activeElement !== inputTexthashtags && activeElement !== textareaTextDescription) {
-        hideFormLoadedPicture();
-    }
+  const activeElement = document.activeElement;
+  if (evt.key === 'Escape' && activeElement !== inputTextHashtags && activeElement !== textareaTextDescription) {
+    hideFormLoadedPicture();
+  }
 }
 
 function addEventListenersToForm() {
-    buttonHideFormLoadedPicture.addEventListener('click', hideFormLoadedPicture);
-    document.addEventListener('keydown', escHideFormLoadedPicture);
-    formUploadPicture.addEventListener('submit', validateTheForm);
+  buttonHideFormLoadedPicture.addEventListener('click', hideFormLoadedPicture);
+  document.addEventListener('keydown', escHideFormLoadedPicture);
+  addEventValidateOnForm();
+  addEventChangesScalePictureOnForm();
+  addEventSettingEffectsOnForm();
 }
 
 function renderFormLoadedPicture() {
-    formRedactionLoadedPicture.classList.remove('hidden');
-    body.classList.add('modal-open');
-    addEventListenersToForm();
+  formRedactionLoadedPicture.classList.remove('hidden');
+  body.classList.add('modal-open');
+  addEventListenersToForm();
 }
 
 inputUploadPicture.addEventListener('change', renderFormLoadedPicture);
