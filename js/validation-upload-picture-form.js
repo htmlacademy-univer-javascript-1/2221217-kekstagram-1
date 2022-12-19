@@ -38,18 +38,9 @@ pristine.addValidator(
   validateComment,
   'длина комментария не может составлять больше 140 символов');
 
-function validateTheForm (evt) {
-  if (!pristine.validate()) {
-    evt.preventDefault();
-  }
+function validateTheForm () {
+  return pristine.validate();
 }
 
-function addEventValidateOnForm() {
-  formUploadPicture.addEventListener('submit', validateTheForm);
-}
 
-function removeEventValidateFromForm() {
-  formUploadPicture.removeEventListener('submit', validateTheForm);
-}
-export {addEventValidateOnForm};
-export {removeEventValidateFromForm};
+export {validateTheForm};

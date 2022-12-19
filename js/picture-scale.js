@@ -13,8 +13,6 @@ function setScale(scale) {
   picturePreview.style.transform = `scale(${scale / 100})`;
 }
 
-setScale(defaultScale);
-
 function changeScale(evt) {
   const scaleValueInt = Number.parseInt(scaleValue.value, 10);
   const buttonChangesScale = evt.target;
@@ -30,10 +28,12 @@ function changeScale(evt) {
 
 function addEventChangesScalePictureOnForm() {
   inputChangeScale.addEventListener('click', changeScale);
+  setScale(defaultScale);
 }
 
 function removeEventChangesScalePictureFromForm() {
   inputChangeScale.removeEventListener('click', changeScale);
 }
+
 export {addEventChangesScalePictureOnForm};
 export {removeEventChangesScalePictureFromForm};
