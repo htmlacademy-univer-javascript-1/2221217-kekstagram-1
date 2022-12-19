@@ -91,23 +91,27 @@ function settingEffects(evt) {
     sliderStorage.classList.remove('hidden');
     img.removeAttribute('class');
     img.classList.add(`effects__preview--${evtValue}`);
-    if (sliderSettings[evtValue].options) {
-      slider.noUiSlider.updateOptions(sliderSettings[evtValue].options);
+    if (sliderSettings[evtValue] !== undefined) {
+      if (sliderSettings[evtValue].options) {
+        slider.noUiSlider.updateOptions(sliderSettings[evtValue].options);
+      }
+
+      slider.noUiSlider.on('update', () => {
+        inputEffectLevelValue.value = slider.noUiSlider.get();
+        img.style.filter = `${sliderSettings[evtValue].filter}(${inputEffectLevelValue.value}${sliderSettings[evtValue].units})`;
+      });
     }
-    slider.noUiSlider.on('update', () => {
-      inputEffectLevelValue.value = slider.noUiSlider.get();
-      img.style.filter = `${sliderSettings[evtValue].filter}(${inputEffectLevelValue.value}${sliderSettings[evtValue].units})`;
-    });
   }
 }
 
 function addEventSettingEffectsOnForm() {
-  removeEffectFromPicture();
   fieldsetImgUploadEffects.addEventListener('click', settingEffects);
 }
 
 function removeEventSettingEffectsFromForm() {
   fieldsetImgUploadEffects.removeEventListener('click', settingEffects);
+  removeEffectFromPicture();
 }
+
 export {addEventSettingEffectsOnForm};
 export {removeEventSettingEffectsFromForm};
