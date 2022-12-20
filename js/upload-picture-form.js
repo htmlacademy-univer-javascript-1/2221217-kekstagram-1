@@ -3,6 +3,7 @@ import {addEventChangesScalePictureOnForm} from './picture-scale.js';
 import {removeEventChangesScalePictureFromForm} from './picture-scale.js';
 import {addEventSettingEffectsOnForm, removeEventSettingEffectsFromForm} from './picture-effect.js';
 import {sendData} from './api.js';
+import {showPicturePreview} from './picture-preview.js';
 
 const inputUploadPicture  = document.querySelector('#upload-file');
 const initialValueInputUploadPicture = inputUploadPicture.getAttribute('value');
@@ -61,6 +62,7 @@ function addEventListenersToForm() {
 function renderFormLoadedPicture() {
   formRedactionLoadedPicture.classList.remove('hidden');
   body.classList.add('modal-open');
+  showPicturePreview();
   addEventListenersToForm();
 }
 
